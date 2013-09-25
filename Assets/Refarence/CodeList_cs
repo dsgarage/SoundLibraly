@@ -112,6 +112,9 @@ void OnTriggerExit(Collision collision){
 ▼オブジェクトをシーン上から削除
 Destroy(GameObject);
 
+Destroy(); //オブジェクトごと削除
+Destroy(this); //コンポーネントを削除
+Destroy(Object obj, float t); //時間指定でオブジェクト削除
 
 ▼シーンのローディング
 Application.LoadLevel("シーン名"); //推移
