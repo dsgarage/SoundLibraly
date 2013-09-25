@@ -1,0 +1,138 @@
+▼コンポーネントを追加したときにまとめて付ける
+//コンポーネントを呼び出したときだけAwakeより手前
+[RequireComponent(typeof(コンポーネント名))]
+
+▼コンポーネントの取得
+//コンポーネント型 変数名 = GetComponent<コンポーネント名>();
+ComponentName comp = GetComponent<ComponentName>();
+
+▼コンポーネントを付ける
+public Component AddComponent(string className)
+public Component AddComponent(Type componentType)
+public T AddComponent<T>() where T : Component
+
+//自分のオブジェクトにコンポーネントを追加
+gameObject.AddComponent("FoobarScript");
+
+
+▼シーン内のゲームオブジェクトの検索（オブジェクト名）
+GameObject.Find("GameObjectName");
+
+▼ゲームオブジェクトのアクティブ状態（表示や動作）を変更
+GameObject.SetActive(bool);
+GameObject.renderer.enabled = bool;
+
+▼プレハブのインスタンスを生成
+Instantiate(GameObject,位置:Vector3);
+
+▼設定情報の保存・取得
+終了後も維持するセーブデータ用変数のようなもの
+PlayerPrefs.SetInt("キー",値);
+PlayerPrefs.GetInt("キー");
+
+▼デバッグログの出力
+Debug.Log("ログメッセージ");
+Debug.Error("エラーメッセージ");
+
+▼フレームレートの指定
+Application.targetFrameRate = 10;
+
+▼他のオブジェクトの関数に値を送る
+オブジェクト名.SendMessage("関数名",値);
+gameObject.SendMessage("functionName",value);
+this.gameObject.SendMessage("functionName",value); //自分の他のスクリプトの関数
+
+▼二点間の距離を計算
+引数にはVector3、transform.positionなど
+Float var = Vector3.Distance(vector1,vector2);
+
+▼範囲内にいるオブジェクトを取得
+Physics.OverlapSphere(位置,範囲);
+Collider[] findData = Physics.OverlapSphere(transform.position,2.5f);
+
+▼NavMeshで追跡ターゲットを指定
+Agent.SetDestination(gameObject.transform.position);
+
+▼シーン内のゲームオブジェクトの検索（タグ名）
+GameObject.FindWithTag(ObjectTagName");
+GameObject.FindGameObjectsWithTag("ObjectTagName");
+
+▼子オブジェクトを取得
+親オブジェクトのトランスフォームに対してFindChildする
+this.transform.FindChild("targetObject").gameObject;
+
+▼マウスが押された事を判定
+if (Input.GetMouseButtonDown(0)){
+ //do
+}
+void OnMouseDown(){
+ //do
+}
+
+▼マウスが離されたことを判定
+if(Input.GetMouseButtonUp(0)){
+ //do
+ }
+
+▼マウスドラッグを判定
+void OnMouseDrag(){
+ //do
+}
+
+▼マウスが押されているかどうかを判定
+if(Input.GetMouseButton(0)){
+ //do
+}
+void OnMouseUp(){
+ //do
+}
+
+▼衝突（コリジョン）の判定
+void OnCollisionEnter(Collision collision){
+//衝突範囲に侵入
+}
+void OnCollisionStay(Collision collision){
+//衝突範囲内のまま移動
+}
+void OnCollisionExit(Collision collision){
+//衝突範囲から離れた
+}
+
+▼トリガーの判定
+void OnTriggerEnter(Collision collision){
+//接触範囲に侵入
+}
+void OnTriggerStay(Collision collision){
+//接触範囲内のまま移動
+}
+void OnTriggerExit(Collision collision){
+//接触範囲から離れた
+}
+
+▼オブジェクトをシーン上から削除
+Destroy(GameObject);
+
+
+▼シーンのローディング
+Application.LoadLevel("シーン名"); //推移
+Application.LoadLevelAdditive("シーン名"); //追加
+Application.LoadLevelAsync("シーン名"); //シームレス推移・Pro版
+Application.LoadLevelAdditiveAsync("シーン名"); //シームレス追加・Pro版
+
+▼指定したオブジェクトの方を見る
+this.transform.LookAt(Target.transform);
+
+▼マウス位置をワールド座標で取得
+//Input.mousePositionでマウス位置のスクリーン座標を取得できる
+//ScreenToWorldPointでスクリーン座標をワールド座標に変換
+MainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+▼カメラから特定の座標にレイを飛ばす
+var ray = カメラ.ScreenPointToRay(座標);
+
+▼レイと衝突したオブジェクトの情報を取得
+RaycastHit hit = new RaycastHit();
+if (Physics.Raycast(レイ,out hit, 範囲)) {
+GameObject 衝突先のオブジェクト = hit.collider.gameObject;
+Vevtor3 衝突ポイント = hit.point;
+}
