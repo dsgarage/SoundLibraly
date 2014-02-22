@@ -1,0 +1,36 @@
+あるオブジェクトを空間上に配置するときはインスペクタで数値を入力して配置していきますが、それをスクリプトで書く時のメモ。
+ 
+オブジェクトの検索方法
+GameObject.Find("hoge")
+ 
+※hogeの部分にはHierarchyにある操作したいオブジェクトの名前が入ります。
+ 
+位置を定める関数としてtransformが用意されていますから、コレで数値を決めてしまえばオブジェクトはその位置に存在するようになります。
+ 
+transformにはまた6つの関数系統が用意されていますが、今回使うのは
+transform.positionです。
+
+・ワールド座標：transform.position
+・ワールド角度：transform.eulerAngles
+・ワールドサイズ：transform.lossyScale
+・ローカル位置：transform.localPosition
+・ローカル角度：transform.localEulerAngles
+・ローカルサイズ：transform.localScale
+
+ワールドというのは画面全体に対する位置や角度、サイズであり、
+ローカルというのはHierarchyで確認することの出来るオブジェクト同士の親子関係に起因する位置や角度、サイズになります。
+これらは全て
+
+this.transform.position.x
+this.transform.position.y
+this.transform.position.z
+などのようにそれぞれ1つの値ごとに値を定めることもできますが、
+ 
+this.transform.position = Vector3(20,20,20);
+ 
+のように1行で書き切ることも可能です。
+オブジェクトを原点に持ってくる場合は
+ 
+this.transform.position = Vector3.zero;
+ 
+と表記することも可能です。
